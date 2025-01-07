@@ -17,7 +17,7 @@ def publish_after(f):
     def wrapper(self, *args, **kwargs):
         result = f(self, *args, **kwargs)
 
-        if settings.EVENT_SUPPRESS:
+        if getattr(settings, "EVENT_SUPPRESS", False):
             return result
 
         now = time.time()
