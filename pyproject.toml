@@ -1,6 +1,7 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling>=1.16.0", "packaging>=23.1"]
 build-backend = "hatchling.build"
+
 
 [project]
 name = "gainsay"
