@@ -32,3 +32,25 @@ def publish_after(f):
         return result
 
     return wrapper
+
+def update_timestamp(key="last_updated", **ad):
+    """
+    Decorator to update a timestamp field on a model instance
+    when it is saved. You need to add `@gainsay.update_timestamp()`
+    in front of the `save()` method of the model.
+    """
+    from django.conf import settings
+
+    def inner_decorator(f):
+        def wrapped(self, *args, **kwargs):
+            from django.utils import timezone
+
+            if not getattr(settings, "EVENT_SUPPRESS", False):
+                setattr(self, key, timezone.now())
+
+            result = f(self, *args, **kwargs)
+            return result
+
+        return wrapped
+
+    return inner_decorator
