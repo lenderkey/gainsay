@@ -33,7 +33,7 @@ def publish_after(f):
 
     return wrapper
 
-def update_timestamp(key="last_updated", **ad):
+def update_timestamp(key: str="last_updated", **ad):
     """
     Decorator to update a timestamp field on a model instance
     when it is saved. You need to add `@gainsay.update_timestamp()`

@@ -2,8 +2,11 @@
 #   gainsay/subscribe.py
 #
 
-def subscribe(subscriber_id, table_id):
+def subscribe(subscriber_id: str, table_id: str):
     """
+    subscribe_id is provided by you, the user. You need to remember it.
+
+    table_id is e.g. the class name used in `obj_table_id`
     """
 
     from .models import GainsaySubscription
@@ -21,7 +24,7 @@ def subscribe(subscriber_id, table_id):
         "obj_id": subscription.obj_id,
     }
 
-def subscriptions(subscriber_id):
+def subscriptions(subscriber_id: str):
     """
     """
 
@@ -36,7 +39,7 @@ def subscriptions(subscriber_id):
             "obj_id": subscription.obj_id,
         }
 
-def unsubscribe(subscriber_id, table_id):
+def unsubscribe(subscriber_id: str, table_id: str):
     """
     """
 
@@ -49,7 +52,7 @@ def unsubscribe(subscriber_id, table_id):
     except ObjectDoesNotExist:
         pass
 
-def unsubscribe_all(subscriber_id):
+def unsubscribe_all(subscriber_id: str):
     """
     """
 
