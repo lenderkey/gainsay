@@ -25,3 +25,15 @@ python manage.py gainsay_snoop --table-id applications.models.Application
 ```
 
 
+## Configuration
+
+Make sure `settings.py` has the following:
+
+```python
+GAINSAY = {
+  "url": 'redis://127.0.0.1:6379/0'
+  "root": "gainsay"
+}
+```
+
+`root` is the root key for all Gainsay events, and avoids collisions with other Redis keys.
