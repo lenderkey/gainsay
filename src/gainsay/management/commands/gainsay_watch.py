@@ -8,8 +8,6 @@ import hashlib
 import glob
 import signal
 
-from icecream import ic
-
 from django.core.management.base import BaseCommand
 from django.db import OperationalError
 
@@ -71,7 +69,7 @@ class Command(BaseCommand):
 
     def watch(self, filename:str):
         import gainsay
-        from common.enum import SUBCRIBER_ID_LENGTH
+        from ...enum import SUBCRIBER_ID_LENGTH
 
         L = "watch"
 
@@ -137,6 +135,7 @@ class Command(BaseCommand):
 
                     on_change(obj, message=message, subscription=subscription)
 
+                    # from icecream import ic
                     # ic(L, message, obj)
 
                 return message
