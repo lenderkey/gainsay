@@ -69,7 +69,7 @@ class Command(BaseCommand):
 
     def watch(self, filename:str):
         import gainsay
-        from ...enum import SUBCRIBER_ID_LENGTH
+        from ...constants import SUBCRIBER_ID_LENGTH
 
         L = "watch"
 
