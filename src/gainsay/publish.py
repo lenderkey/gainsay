@@ -24,7 +24,6 @@ def publish_raw(table_id:str, obj_id:Union[str,int]=None, obj_pointer:str=None, 
     """
     L = "gainsay.publish"
 
-    from common.datetime import formatter_isodatetime # unnecessary (not accessed)
     from .Gainsay import Gainsay
 
     if not obj_pointer or not isinstance(obj_pointer, str):

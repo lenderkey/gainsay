@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "gainsay"
 dynamic = ["version"]
-description = 'Encryption at Rest tools'
+description = 'Redis Notifications'
 readme = "README.md"
 requires-python = ">=3.9"
 # license = "MIT"
@@ -27,7 +27,7 @@ classifiers = [
 dependencies = [
     "redis>=5",
     "django>=5.1",
-
+    "python-dateutil",
 ]
 
 [project.urls]

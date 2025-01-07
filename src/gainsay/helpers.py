@@ -1,7 +1,7 @@
 from typing import List, Iterable, Union
 import datetime
 
-from common.datetime import formatter_isodatetime
+from .utils import formatter_isodatetime
 
 def obj_list(cls, field, 
     since:str=None, until:str=None, 
@@ -13,7 +13,7 @@ def obj_list(cls, field,
     """
     This is a helper function to implement obj_list for Django models.
     """
-    from common.datetime import advance_isodatetime
+    from .utils import formatter_isodatetime, advance_isodatetime
 
     if since:
         ## handle mismatch between milliseconds and database precision

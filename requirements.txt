@@ -1,3 +1,5 @@
 redis
 Django>=5.1
 PyYAML
+python-dateutil
+

@@ -70,9 +70,6 @@ class Common:
         print("thread done")
 
     def waitfor(self, obj_id:int=None, obj_pointer=None, delay:float=0.1, max_time:float=2.5, throw=True):
-        ## from common.formatters import formatter_isodatetime
-        ## obj_pointer = obj_pointer and formatter_isodatetime(obj_pointer)
-
         start = time.time()
         while time.time() - start < max_time:
             for message in self.received:

@@ -4,14 +4,12 @@
 
 from typing import Callable, Union, List
 import json
-import time
 import logging as logger
 from threading import Thread
-import queue
 
 from django.db import OperationalError
 
-from common.datetime import formatter_isodatetime
+from .utils import formatter_isodatetime
 from .protocols import GainsayProtocol
 
 once_no_redis = False
@@ -102,7 +100,6 @@ def listen(
 
     L = "gainsay.listen"
     
-    from common.datetime import formatter_isodatetime # redundant (already imported at module level)
     from .Gainsay import Gainsay
     from .models import GainsaySubscription
 

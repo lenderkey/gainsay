@@ -4,7 +4,7 @@
 #
 
 from django.db import models
-from ..constants import OBJ_TABLE_ID_LENGTH, SUBCRIBER_ID_LENGTH, OBJ_POINTER_LENGTH
+from ..utils import OBJ_TABLE_ID_LENGTH, SUBCRIBER_ID_LENGTH, OBJ_POINTER_LENGTH
 
 class GainsaySubscription(models.Model):
     """
