@@ -90,7 +90,9 @@ handlertsd = {}
 def listen(
     subscriber_id:str, 
     callback:Callable[[dict, dict], Union[dict,GainsayProtocol,List[GainsayProtocol]]], 
+    *,
     send_boot:bool=False,
+    channel:str="all",
 ):
     """
     Listen for Gainsay events.
@@ -124,7 +126,7 @@ def listen(
     global listener, handlertsd
     if not listener:
         listener = connection.pubsub()
-        listener.psubscribe(f"{Gainsay.root}/*")
+        listener.psubscribe(f"{Gainsay.root}/{channel}/*")
 
         def do_listen():
             for message in listener.listen():
