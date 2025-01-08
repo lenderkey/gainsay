@@ -5,6 +5,7 @@
 from typing import Union, List
 import json
 import logging as logger
+import datetime
 
 once_no_redis = False
 
@@ -22,7 +23,7 @@ def publish(obj:GainsayProtocol) -> None:
 def publish_raw(
     table_id:str, 
     obj_id:Union[str,int]=None, 
-    obj_pointer:str=None, 
+    obj_pointer:Union[str,datetime.datetime]=None, 
     obj_channels:List[Union[str,int]]=None, 
     extras:dict=None,
 ) -> None:
@@ -32,9 +33,16 @@ def publish_raw(
     L = "gainsay.publish"
 
     from .Gainsay import Gainsay
+    from .helpers import formatter_isodatetime
 
-    if not obj_pointer or not isinstance(obj_pointer, str):
-        raise ValueError(f"{L}: obj_pointer is required and must be a string")
+    if not obj_pointer:
+        raise ValueError(f"{L}: obj_pointer is required")
+    elif isinstance(obj_pointer, datetime.datetime):
+        obj_pointer = formatter_isodatetime(obj_pointer)
+    elif isinstance(obj_pointer, str):
+        pass
+    else:
+        raise ValueError(f"{L}: obj_pointer is required and must be a string or datetime")
 
     connection = Gainsay.redis()
     if not connection:
@@ -52,6 +60,7 @@ def publish_raw(
     }
     if extras:
         message["x"] = extras
+        
     message = json.dumps(message)
 
     for key in [ "all", *(obj_channels or []) ]:

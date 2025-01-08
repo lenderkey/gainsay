@@ -105,7 +105,6 @@ def listen(
     from .Gainsay import Gainsay
     from .models import GainsaySubscription
 
-
     def _finished():
         for key in subscription_keys:
             handlerts = handlertsd.get(key)
