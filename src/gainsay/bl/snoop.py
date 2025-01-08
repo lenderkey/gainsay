@@ -4,12 +4,13 @@ from gainsay import Gainsay
 import json
 import logging as logger
 
-def snoop(callback:Callable, *, connection=None, table_id:str=None, is_deep:bool=False):
+def snoop(callback:Callable, *, connection=None, table_id:str=None, channel: str="all", is_deep:bool=False):
     connection = Gainsay.redis()
     if not connection:
         raise Exception("Redis is not configured")
 
-    key = f"{Gainsay.root}/{table_id or '*'}"
+    key = f"{Gainsay.root}/{channel}/{table_id or '*'}"
+    logger.info(f"snooping on {key}")
 
     listener = connection.pubsub()
 

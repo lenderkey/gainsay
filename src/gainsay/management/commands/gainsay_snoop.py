@@ -19,18 +19,25 @@ class Command(BaseCommand):
             required=False,
         )
         parser.add_argument(
+            "--channel", 
+            help="listen on this cannel", 
+            dest="channel",
+            default="all",
+            required=False,
+        )
+        parser.add_argument(
             "--deep",
             help="deep inspection",
             dest="is_deep",
             action="store_true",
         )
 
-    def handle(self, table_id:str, is_deep:bool, *args, **kwargs):
+    def handle(self, table_id:str, is_deep:bool, channel: str, *args, **kwargs):
         from gainsay.bl import snoop
 
         def callback(data):
             print("---")
             print(yaml.dump(data))
 
-        snoop(table_id=table_id, is_deep=is_deep, callback=callback)
+        snoop(table_id=table_id, is_deep=is_deep, channel=channel, callback=callback)
 
