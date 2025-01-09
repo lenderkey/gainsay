@@ -35,7 +35,7 @@ class Command(BaseCommand):
     def handle(self, table_id:str, is_deep:bool, channel: str, *args, **kwargs):
         from gainsay.bl import snoop
 
-        def callback(data):
+        def callback(data, channel, table_id, **kwargs):
             print("---")
             print(yaml.dump(data))
 

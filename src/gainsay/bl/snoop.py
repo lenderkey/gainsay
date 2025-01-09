@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Dict
 from gainsay import Gainsay
 
 import json
@@ -26,12 +26,12 @@ def snoop(callback:Callable, *, connection=None, table_id:str=None, channel: str
             except:
                 pass
 
-            callback(message)
+            callback(message, channel=channel, table_id=table_id)
         else:
             type = message.get("type")
             if type in [ "message", "pmessage" ]:
                 data = json.loads(message.get("data"))
-                callback(data)
+                callback(data, channel=channel, table_id=table_id)
 
 def snoop_daemon(callback:Callable, **kwargs):
     import threading
